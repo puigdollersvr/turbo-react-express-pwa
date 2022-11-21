@@ -1,0 +1,384 @@
+{
+	"info": {
+		"_postman_id": "d9be5820-cb28-4058-a315-22e5252dae70",
+		"name": "PWA",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "10817214"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Revalidate Token",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2Mzc5MGFjM2E5NmY2NDI4MjkzOGY2YjciLCJuYW1lIjoiQ3Jpc3RpbmEiLCJpYXQiOjE2Njg4ODA4NTIsImV4cCI6MTY2ODg4ODA1Mn0.gHCZBujKIvrvouv328-dlVCwxjDuEHpPaK5eZ6WZi5M",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:4000/api/auth/revalidate",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"auth",
+								"revalidate"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Revalidate Token",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2Mzc5MGFjM2E5NmY2NDI4MjkzOGY2YjciLCJuYW1lIjoiQ3Jpc3RpbmEiLCJpYXQiOjE2Njg4ODA4NTIsImV4cCI6MTY2ODg4ODA1Mn0.gHCZBujKIvrvouv328-dlVCwxjDuEHpPaK5eZ6WZi5M",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:4000/api/auth/revalidate?",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"api",
+										"auth",
+										"revalidate"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": null
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"ok\": true,\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2Mzc5MGFjM2E5NmY2NDI4MjkzOGY2YjciLCJuYW1lIjoiQ3Jpc3RpbmEiLCJpYXQiOjE2Njg4ODExMjcsImV4cCI6MTY2ODg4ODMyN30.xV20Xwzg1dpqxOJRiDUDxkbZwr-Q4eE1mj6-C7XOqZ0\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Create User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Potasin\",\n    \"email\": \"potasin@gmail.com\",\n    \"password\": \"123456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/auth/new",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"auth",
+								"new"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create User",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Potasin\",\n    \"email\": \"potasin@gmail.com\",\n    \"password\": \"123456\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:4000/api/auth/new",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"api",
+										"auth",
+										"new"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"ok\": true,\n    \"uid\": \"637913890f0698526a2aead1\",\n    \"name\": \"Potasin\",\n    \"email\": \"potasin@gmail.com\",\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2Mzc5MTM4OTBmMDY5ODUyNmEyYWVhZDEiLCJuYW1lIjoiUG90YXNpbiIsImlhdCI6MTY2ODg3OTI0MSwiZXhwIjoxNjY4ODg2NDQxfQ.6_zKP-sJ-jAlBGiOlq_5TaH0SrjoHCP7dLNuZOqxqzM\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Login User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"cquiles.094@gmail.com\",\n    \"password\": \"123456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/auth/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"auth",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Login User",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"cquiles.094@gmail.com\",\n    \"password\": \"123456\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:4000/api/auth/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"api",
+										"auth",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"ok\": true,\n    \"uid\": \"63790ac3a96f64282938f6b7\",\n    \"name\": \"Cristina\",\n    \"email\": \"cquiles.094@gmail.com\",\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2Mzc5MGFjM2E5NmY2NDI4MjkzOGY2YjciLCJuYW1lIjoiQ3Jpc3RpbmEiLCJpYXQiOjE2Njg4ODA4NTIsImV4cCI6MTY2ODg4ODA1Mn0.gHCZBujKIvrvouv328-dlVCwxjDuEHpPaK5eZ6WZi5M\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Todos",
+			"item": [
+				{
+					"name": "Create Todo",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2Mzc5MGFjM2E5NmY2NDI4MjkzOGY2YjciLCJuYW1lIjoiQ3Jpc3RpbmEiLCJpYXQiOjE2Njg4ODA4NTIsImV4cCI6MTY2ODg4ODA1Mn0.gHCZBujKIvrvouv328-dlVCwxjDuEHpPaK5eZ6WZi5M",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Todo\",\n    \"notes\": \"\",\n    \"start\": 0,\n    \"end\": 1000000,\n    \"done\": false\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/todos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"todos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Todos",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2Mzc5MGFjM2E5NmY2NDI4MjkzOGY2YjciLCJuYW1lIjoiQ3Jpc3RpbmEiLCJpYXQiOjE2Njg4ODA4NTIsImV4cCI6MTY2ODg4ODA1Mn0.gHCZBujKIvrvouv328-dlVCwxjDuEHpPaK5eZ6WZi5M",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:4000/api/todos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"todos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Todo",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2Mzc5MGFjM2E5NmY2NDI4MjkzOGY2YjciLCJuYW1lIjoiQ3Jpc3RpbmEiLCJpYXQiOjE2Njg4ODA4NTIsImV4cCI6MTY2ODg4ODA1Mn0.gHCZBujKIvrvouv328-dlVCwxjDuEHpPaK5eZ6WZi5M",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:4000/api/todos/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"todos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Todo",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2Mzc5MGFjM2E5NmY2NDI4MjkzOGY2YjciLCJuYW1lIjoiQ3Jpc3RpbmEiLCJpYXQiOjE2Njg4ODA4NTIsImV4cCI6MTY2ODg4ODA1Mn0.gHCZBujKIvrvouv328-dlVCwxjDuEHpPaK5eZ6WZi5M",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:4000/api/todos/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"todos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove Todo",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2Mzc5MGFjM2E5NmY2NDI4MjkzOGY2YjciLCJuYW1lIjoiQ3Jpc3RpbmEiLCJpYXQiOjE2Njg4ODA4NTIsImV4cCI6MTY2ODg4ODA1Mn0.gHCZBujKIvrvouv328-dlVCwxjDuEHpPaK5eZ6WZi5M",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:4000/api/todos/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"todos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
