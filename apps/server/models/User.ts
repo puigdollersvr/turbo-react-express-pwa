@@ -4,16 +4,16 @@ import {Schema, model} from 'mongoose';
 const UserSchema = new Schema<any>({
   name: {
     type: String,
-    require: true,
+    required: true,
   },
   email: {
     type: String,
-    require: true,
+    required: true,
     unique: true,
   },
   password: {
     type: String,
-    require: true,
+    required: true,
   },
 });
 

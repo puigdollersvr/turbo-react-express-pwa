@@ -4,7 +4,7 @@
   const TodoSchema = new Schema({
     title: {
       type: String,
-      require: true,
+      required: true,
     },
     notes: {
       type: String,
@@ -17,12 +17,18 @@
     },
     done: {
       type: Boolean,
-      require: true,
+      required: true,
     },
     user: {
       type: Schema.Types.ObjectId,
       ref: 'User',
     },
+  });
+
+  TodoSchema.method('toJSON', function() {
+    const { __v, _id, ...object } = this.toObject();
+    object.id = _id;
+    return object;
   });
 
   export default model('Todo', TodoSchema);

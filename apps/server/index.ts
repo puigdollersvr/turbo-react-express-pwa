@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import {dbConnection} from './db/config';
 import authRouter from './routes/auth'
-import todosRouter from './routes/auth'
+import todosRouter from './routes/todos'
 
 dotenv.config();
 

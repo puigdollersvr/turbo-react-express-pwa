@@ -18,6 +18,7 @@ router.post(
     '/', [
         check('title', 'The title is required').not().isEmpty(),
         check('start', 'Start date: Incorrect format').custom(isDate),
+        check('end', 'End date: Incorrect format').custom(isDate),
         validateFields
     ], createTodo
 );
