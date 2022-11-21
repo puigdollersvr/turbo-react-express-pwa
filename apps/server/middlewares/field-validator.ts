@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
-const { validationResult } = require('express-validator')
+import {validationResult} from 'express-validator'
 
-const validateFields = (req:Request, res: Response, next: NextFunction) => {
+export const validateFields = (req:Request, res: Response, next: NextFunction) => {
     //Error handling
     const errors = validationResult(req);
     if ( !errors.isEmpty() ) {
@@ -12,7 +12,3 @@ const validateFields = (req:Request, res: Response, next: NextFunction) => {
     }
     next();
 };
-
-module.exports = {
-    validateFields
-}

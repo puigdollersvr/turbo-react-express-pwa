@@ -1,21 +1,21 @@
-namespace UserModel {
-    const { Schema, model } = require('mongoose');
 
-    const UserSchema = Schema({
-        name: {
-            type: String,
-            require: true
-        },
-        email: {
-            type: String,
-            require: true,
-            unique: true
-        },
-        password: {
-            type: String,
-            require: true
-        }
-    })
-    
-    module.exports = model('User', UserSchema);
-}
+import {Schema, model} from 'mongoose';
+
+const UserSchema = new Schema<any>({
+  name: {
+    type: String,
+    require: true,
+  },
+  email: {
+    type: String,
+    require: true,
+    unique: true,
+  },
+  password: {
+    type: String,
+    require: true,
+  },
+});
+
+export default model('User', UserSchema);
+

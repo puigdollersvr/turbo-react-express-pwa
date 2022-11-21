@@ -1,7 +1,7 @@
 import { NextFunction, Response } from "express"
-const jwt = require('jsonwebtoken');
+import jwt from 'jsonwebtoken'
 
-const validateJWT = (req:any, res: Response, next: NextFunction) => {
+export const validateJWT = (req:any, res: Response, next: NextFunction) => {
     const token = req.header('x-token');
     
     if(!token) {
@@ -12,7 +12,7 @@ const validateJWT = (req:any, res: Response, next: NextFunction) => {
     }
 
     try {
-        const { uid, name} = jwt.verify(token, process.env.SECRET_JWT_SEED);
+        const { uid, name}: any = jwt.verify(token, `${process.env.SECRET_JWT_SEED}`);
         req.uid = uid;
         req.name = name;
     } catch (error) {
@@ -22,10 +22,5 @@ const validateJWT = (req:any, res: Response, next: NextFunction) => {
         msg: 'Invalid token'
         })
     }
-
     next();
-}
-
-module.exports = {
-    validateJWT
 }

@@ -1,52 +1,37 @@
-import { Request, Response } from "express";
+import {Request, Response} from 'express';
 
-namespace TodosController {
-    const User = require('../models/User');
 
-    const createTodo = async (req: Request, res: Response) => {
+export const createTodo = async (req: Request, res: Response) => {
+  res.json({
+    ok: true,
+    msg: 'Create',
+  });
+};
 
-        
+export const getTodos = async (req: Request, res: Response) => {
+  res.json({
+    ok: true,
+    msg: 'Get All',
+  });
+};
 
-        res.json({
-          ok: true,
-          msg: 'Create'
-        });
-    }
-    
-    const getTodos = async (req: Request, res: Response) => {
-        res.json({
-          ok: true,
-          msg: 'Get All'
-        });
-    }
-    
-    const getTodo = async (req: Request, res: Response) => {
-        res.json({
-          ok: true,
-          msg: 'Get Single'
-        });
-    }
-    
-    const updateTodo = async (req: Request, res: Response) => {
-        res.json({
-          ok: true,
-          msg: 'update'
-        });
-    }
-    
-    const removeTodo = async (req: Request, res: Response) => {
-        res.json({
-          ok: true,
-          msg: 'remove'
-        });
-    }
-    
-    
-      module.exports = {
-        getTodos,
-        createTodo,
-        getTodo,
-        updateTodo,
-        removeTodo
-      };
-}
+export const getTodo = async (req: Request, res: Response) => {
+  res.json({
+    ok: true,
+    msg: 'Get Single',
+  });
+};
+
+export const updateTodo = async (req: Request, res: Response) => {
+  res.json({
+    ok: true,
+    msg: 'update',
+  });
+};
+
+export const removeTodo = async (req: Request, res: Response) => {
+  res.json({
+    ok: true,
+    msg: 'remove',
+  });
+};
