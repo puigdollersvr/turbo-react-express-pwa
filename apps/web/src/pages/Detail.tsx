@@ -13,7 +13,7 @@ const Detail = () => {
 
     return <Stack spacing={4} direction="column" justifyContent={"center"}>
         <Stack spacing={0} direction="column" justifyContent={"center"}>
-            <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+            {/*<Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
                 {`${todos?.user}`}
             </Typography>
             <Typography variant="h5" component="div">
@@ -24,18 +24,18 @@ const Detail = () => {
             </Typography>
             <Typography variant="body2">
                 {`${todos?.notes}`}
-            </Typography>
+            </Typography> */}
             <TextField
                   required
                   id="filled-required"
                   label="title"
-                  defaultValue={todos.title || 'dsasdds'}
+                  defaultValue= {`${todos?.title}`}
                   variant="standard"
             />
             <TextField
                   id="filled-required"
                   label="notes"
-                  defaultValue={todos.notes}
+                  defaultValue={`${todos?.notes}`}
                   variant="standard"
             />
            
