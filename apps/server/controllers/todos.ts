@@ -27,29 +27,123 @@ export const createTodo = async (req: any, res: Response) => {
 };
 
 export const getTodos = async (req: Request, res: Response) => {
+
+  const todos = await Todo.find().populate('user', 'name');
+
   res.json({
     ok: true,
-    msg: 'Get All',
+    todos
   });
 };
 
-export const getTodo = async (req: Request, res: Response) => {
-  res.json({
-    ok: true,
-    msg: 'Get Single',
-  });
+export const getTodo = async (req: any, res: Response) => {
+
+  const todoId = req.params.id;
+  const uid = req.uid;
+
+  try {
+    
+    const todo = await Todo.findById( todoId );
+
+    if ( !todo ) {
+      return res.status(404).json({
+        ok: false,
+        msg: 'Bad request',
+      });
+    }
+
+    res.json({
+      ok: true,
+      todo: todo
+    })
+
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      ok: false,
+      msg: 'Something went wrong',
+    });
+  }
 };
 
-export const updateTodo = async (req: Request, res: Response) => {
-  res.json({
-    ok: true,
-    msg: 'update',
-  });
+export const updateTodo = async (req: any, res: Response) => {
+
+  const todoId = req.params.id;
+  const uid = req.uid;
+
+  try {
+    
+    const todo = await Todo.findById( todoId );
+
+    if ( !todo ) {
+      return res.status(404).json({
+        ok: false,
+        msg: 'Bad request',
+      });
+    }
+
+    if ( `${todo.user}` !== uid ) {
+      return res.status(401).json({
+        ok: false,
+        msg: 'Unauthorized',
+      });
+    }
+
+    const newTodo = {
+      ...req.body,
+      user: uid
+    }
+
+    const updatedTodo = await Todo.findByIdAndUpdate( todoId, newTodo, { new: true } );
+
+    res.json({
+      ok: true,
+      todo: updatedTodo
+    })
+
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      ok: false,
+      msg: 'Something went wrong',
+    });
+  }
 };
 
-export const removeTodo = async (req: Request, res: Response) => {
-  res.json({
-    ok: true,
-    msg: 'remove',
-  });
+export const removeTodo = async (req: any, res: Response) => {
+
+  const todoId = req.params.id;
+  const uid = req.uid;
+
+  try {
+    const todo = await Todo.findById( todoId );
+
+    if ( !todo ) {
+      return res.status(404).json({
+        ok: false,
+        msg: 'Bad request',
+      });
+    }
+
+    if ( `${todo.user}` !== uid ) {
+      return res.status(401).json({
+        ok: false,
+        msg: 'Unauthorized',
+      });
+    }
+
+    await Todo.findByIdAndRemove( todoId );
+
+    res.json({
+      ok: true,
+      msg: 'Todo removed'
+    })
+
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      ok: false,
+      msg: 'Something went wrong',
+    });
+  }
 };
