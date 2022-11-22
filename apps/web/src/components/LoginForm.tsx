@@ -30,12 +30,12 @@ const LoginForm = ({children}: any) => {
                 <TextField
                   required
                   id="filled-required"
-                  label="Required"
-                  defaultValue="User"
+                  label="email"
                   variant="standard"
                   onChange={(e) => setEmail(`${e.target.value}`)}
                 />
                 <TextField
+                  required
                   id="standard-password-input"
                   label="Password"
                   type="password"
