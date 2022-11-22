@@ -6,8 +6,27 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
+import { useLogin } from '../hooks/useLogin';
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 export default function NavBar() {
+
+  const { isLoggedIn, logout } = useLogin();
+  const [ loginButtonLabel, setLoginButtonLabel ] = useState(isLoggedIn() ? 'Logout' : 'Login')
+  const navigate = useNavigate();
+
+
+  const handleClick = () => {
+    if (isLoggedIn()) {
+      logout()
+      setLoginButtonLabel('Login')
+    } 
+    else {
+        navigate('/login'); 
+    }
+  }
+
   return (
     <Box sx={{ flexGrow: 1, marginBottom:2 }}>
       <AppBar position="static">
@@ -24,7 +43,7 @@ export default function NavBar() {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             TODO LIST
           </Typography>
-          <Button color="inherit">Logout</Button>
+          <Button color="inherit" onClick={handleClick}>{loginButtonLabel}</Button>
         </Toolbar>
       </AppBar>
     </Box>

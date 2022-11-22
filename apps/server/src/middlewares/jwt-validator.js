@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.validateJWT = void 0;
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const validateJWT = (req, res, next) => {
-    const token = req.header('x-token');
+    const token = req.header('Authorization');
     if (!token) {
         return res.status(401).json({
             ok: false,
@@ -14,7 +14,7 @@ const validateJWT = (req, res, next) => {
         });
     }
     try {
-        const { uid, name } = jsonwebtoken_1.default.verify(token, `${process.env.SECRET_JWT_SEED}`);
+        const { uid, name } = jsonwebtoken_1.default.verify(token.replace('Bearer ', ''), `${process.env.SECRET_JWT_SEED}`);
         req.uid = uid;
         req.name = name;
     }

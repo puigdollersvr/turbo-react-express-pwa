@@ -1,15 +1,13 @@
 import React from 'react';
+import { Outlet } from 'react-router-dom';
 import './App.css';
 import Layout from './components/Layout';
-import LoginForm from './components/LoginForm';
-import TodoList from './components/TodoList';
 
 function App() {
   return (
     <div className="App">
       <Layout>
-        <LoginForm />
-        <TodoList />
+        <Outlet />
       </Layout>
     </div>
   );
