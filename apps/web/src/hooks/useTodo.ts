@@ -20,7 +20,7 @@ export const useTodo = (id?: string) => {
     useEffect(() => {
         fetch(url, {
             headers:{
-                Authorization: `Bearer ${sessionStorage.getItem("user_jwt_token") || ''}`
+                Authorization: `Bearer ${localStorage.getItem("token") || ''}`
             }
             }).then(res => res.json())
             .catch(error => {
@@ -42,7 +42,7 @@ export const useTodo = (id?: string) => {
             body: JSON.stringify(data), // data can be `string` or {object}!
             headers:{
                 'Content-Type': 'application/json',
-                Authorization: `Bearer ${sessionStorage.getItem("user_jwt_token") || ''}`
+                Authorization: `Bearer ${localStorage.getItem("token") || ''}`
             }
             }).then(res => res.json())
             .catch(error => console.error('Error:', error))
@@ -57,7 +57,7 @@ export const useTodo = (id?: string) => {
             body: JSON.stringify(data),
             headers:{
                 'Content-Type': 'application/json',
-                Authorization: `Bearer ${sessionStorage.getItem("user_jwt_token") || ''}`
+                Authorization: `Bearer ${localStorage.getItem("token") || ''}`
             }
             }).then(res => res.json())
             .catch(error => console.error('Error:', error))
@@ -72,7 +72,7 @@ export const useTodo = (id?: string) => {
             method: 'DELETE', // or 'PUT'
             headers:{
                 'Content-Type': 'application/json',
-                Authorization: `Bearer ${sessionStorage.getItem("user_jwt_token") || ''}`
+                Authorization: `Bearer ${localStorage.getItem("token") || ''}`
             }
             }).then(res => res.json())
             .catch(error => console.error('Error:', error))

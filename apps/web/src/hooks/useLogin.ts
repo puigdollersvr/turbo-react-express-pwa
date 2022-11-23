@@ -9,7 +9,7 @@ export const useLogin = () => {
 
     const navigate = useNavigate()
     
-    const isLoggedIn =  () => sessionStorage.getItem("user_jwt_token");
+    const isLoggedIn =  () => localStorage.getItem("token");
 
     const login = ({email, password}: ILogin) => {
 
@@ -25,13 +25,14 @@ export const useLogin = () => {
         }).then(res => res.json())
         .catch(error => console.error('Error:', error))
         .then(response => {
-            sessionStorage.setItem("user_jwt_token", response.token);
+            localStorage.setItem("token", response.token);
+            localStorage.setItem("token-init-date", `${new Date().getTime()}` );
             navigate('/todos')
         });
     }
 
     const logout = () => {
-        sessionStorage.removeItem("user_jwt_token");
+        localStorage.removeItem("token");
     }
 
     return {

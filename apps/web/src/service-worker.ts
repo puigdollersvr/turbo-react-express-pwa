@@ -78,3 +78,48 @@ self.addEventListener('message', (event) => {
 });
 
 // Any other custom service worker logic can go here.
+self.addEventListener( 'install', async (event) => {
+  
+  const cache = await caches.open('cache-1');
+  await cache.addAll([
+    '/favicon.ico'
+  ]);
+
+});
+
+
+const apiOfflineFallbacks = [
+  'http://localhost:4000/api/auth/revalidate',
+  'http://localhost:4000/api/todos/',
+]
+
+self.addEventListener( 'fetch', async (event) => {
+  
+  //console.log(event.request.url);
+
+  if ( !apiOfflineFallbacks.includes( event.request.url ) ) return;
+
+  const resp:any = fetch( event.request )
+      .then( response => {
+
+        if ( !response ) {
+          return caches.match( event.request );
+        }
+
+        caches.open('cache-dynamic').then( cache => {
+            cache.put( event.request, response )
+        });
+
+        return response.clone();
+
+      })
+      .catch( err => {
+
+        console.log('Offline response');
+        return caches.match( event.request );
+
+      });
+
+      event.respondWith( resp );
+
+});

@@ -1,8 +1,8 @@
 import { ReactNode } from 'react';
 import Stack from '@mui/material/Stack';
 import { Button } from '@mui/material';
-import { useLogin } from '../hooks/useLogin';
 import { useNavigate } from 'react-router-dom';
+import { useRevalidate } from '../hooks/useRevalidate';
 
 interface IAuthorizationProps {
     children?: ReactNode
@@ -21,9 +21,9 @@ const Unauthorized = () => {
 
 
 const Authorization = ({children}:IAuthorizationProps) => {
-    const { isLoggedIn } = useLogin();
+    const { isValidated } = useRevalidate();
     return <>
-        {isLoggedIn() ? children : <Unauthorized />}
+        {isValidated ? children : <Unauthorized />}
     </>
 }
 
