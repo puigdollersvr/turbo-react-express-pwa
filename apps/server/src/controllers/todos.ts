@@ -2,47 +2,38 @@ import {Request, Response} from 'express';
 import Todo from '../models/Todo';
 
 export const createTodo = async (req: any, res: Response) => {
-
   const todo = new Todo(req.body);
 
   try {
     todo.user = req.uid;
     const savedTodo = await todo.save();
-    res.json({
+    return res.json({
       ok: true,
       todo: savedTodo,
-    })
+    });
   } catch (error) {
     console.log(error);
-    res.status(500).json({
+    return res.status(500).json({
       ok: false,
       msg: 'Something went wrong',
     });
   }
-
-  res.json({
-    ok: true,
-    msg: 'Create',
-  });
 };
 
 export const getTodos = async (req: Request, res: Response) => {
-
   const todos = await Todo.find().populate('user', 'name');
 
   res.json({
     ok: true,
-    todos
+    todos,
   });
 };
 
 export const getTodo = async (req: any, res: Response) => {
-
   const todoId = req.params.id;
   const uid = req.uid;
 
   try {
-    
     const todo = await Todo.findById( todoId );
 
     if ( !todo ) {
@@ -54,9 +45,8 @@ export const getTodo = async (req: any, res: Response) => {
 
     res.json({
       ok: true,
-      todo: todo
-    })
-
+      todo: todo,
+    });
   } catch (error) {
     console.log(error);
     res.status(500).json({
@@ -67,12 +57,10 @@ export const getTodo = async (req: any, res: Response) => {
 };
 
 export const updateTodo = async (req: any, res: Response) => {
-
   const todoId = req.params.id;
   const uid = req.uid;
 
   try {
-    
     const todo = await Todo.findById( todoId );
 
     if ( !todo ) {
@@ -91,16 +79,19 @@ export const updateTodo = async (req: any, res: Response) => {
 
     const newTodo = {
       ...req.body,
-      user: uid
-    }
+      user: uid,
+    };
 
-    const updatedTodo = await Todo.findByIdAndUpdate( todoId, newTodo, { new: true } );
+    const updatedTodo = await Todo.findByIdAndUpdate(
+        todoId,
+        newTodo,
+        {new: true}
+    );
 
     res.json({
       ok: true,
-      todo: updatedTodo
-    })
-
+      todo: updatedTodo,
+    });
   } catch (error) {
     console.log(error);
     res.status(500).json({
@@ -111,7 +102,6 @@ export const updateTodo = async (req: any, res: Response) => {
 };
 
 export const removeTodo = async (req: any, res: Response) => {
-
   const todoId = req.params.id;
   const uid = req.uid;
 
@@ -136,9 +126,8 @@ export const removeTodo = async (req: any, res: Response) => {
 
     res.json({
       ok: true,
-      msg: 'Todo removed'
-    })
-
+      msg: 'Todo removed',
+    });
   } catch (error) {
     console.log(error);
     res.status(500).json({

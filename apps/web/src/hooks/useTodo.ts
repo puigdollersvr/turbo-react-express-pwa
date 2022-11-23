@@ -18,9 +18,6 @@ export const useTodo = (id?: string) => {
     const url = `${process.env.REACT_APP_API_URL}/todos/${id || ''}`;
 
     useEffect(() => {
-
-        console.log('1.A')
-
         fetch(url, {
             headers:{
                 Authorization: `Bearer ${sessionStorage.getItem("user_jwt_token") || ''}`
@@ -33,17 +30,65 @@ export const useTodo = (id?: string) => {
                 throw new Error('Fetching error');
             })
             .then(response => {
-                console.log('2.AA');
-                console.log('ID', id);
                 !id ? setData(response.todos) : setData(response.todo);
                 setIsLoading(false);
             });
     }, [])
 
+    const createTodo = (data:{}) => {
+        console.log('CREATING...')
+        fetch(url, {
+            method: 'POST',
+            body: JSON.stringify(data), // data can be `string` or {object}!
+            headers:{
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${sessionStorage.getItem("user_jwt_token") || ''}`
+            }
+            }).then(res => res.json())
+            .catch(error => console.error('Error:', error))
+            .then(response => {
+                console.log(response)
+                //return response
+            });
+    }
+
+    const updateTodo = (data:{}) => {
+        fetch(url, {
+            method: 'PUT',
+            body: JSON.stringify(data),
+            headers:{
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${sessionStorage.getItem("user_jwt_token") || ''}`
+            }
+            }).then(res => res.json())
+            .catch(error => console.error('Error:', error))
+            .then(response => {
+               
+                return response;
+            });
+    }
+
+    const removeTodo = () => {
+        fetch(url, {
+            method: 'DELETE', // or 'PUT'
+            headers:{
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${sessionStorage.getItem("user_jwt_token") || ''}`
+            }
+            }).then(res => res.json())
+            .catch(error => console.error('Error:', error))
+            .then(response => {
+                return response;
+            });
+    }
+
     return {
         isLoading,
         todos: data,
-        errors
+        errors,
+        createTodo,
+        updateTodo,
+        removeTodo
 
     }
 }
