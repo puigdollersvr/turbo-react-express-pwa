@@ -32,11 +32,9 @@ const EditForm = () => {
         if (id) {
             if (isFormEnabled) {
                 await updateTodo({title, notes, done});
-                setIsFormEnabled(!isFormEnabled);
-                return true;
             }
+            setIsFormEnabled(!isFormEnabled);
         } else {
-            console.log('¡AQUI!')
             await createTodo({
                 title, 
                 notes, 
@@ -45,7 +43,6 @@ const EditForm = () => {
                 end: 1000000 
             });
             navigate('/todos');
-            return true;
         }
         
     }

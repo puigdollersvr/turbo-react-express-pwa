@@ -47,8 +47,7 @@ export const useTodo = (id?: string) => {
             }).then(res => res.json())
             .catch(error => console.error('Error:', error))
             .then(response => {
-                console.log(response)
-                //return response
+                return response
             });
     }
 
