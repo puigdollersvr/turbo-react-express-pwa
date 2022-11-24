@@ -27,12 +27,14 @@ export const useLogin = () => {
         .then(response => {
             localStorage.setItem("token", response.token);
             localStorage.setItem("token-init-date", `${new Date().getTime()}` );
-            navigate('/todos')
+            window.location.reload();
         });
     }
 
     const logout = () => {
         localStorage.removeItem("token");
+        localStorage.removeItem("token-init-date");
+        window.location.reload();
     }
 
     return {

@@ -1,10 +1,10 @@
 import TodoList from "../components/TodoList"
-import { useLogin } from "../hooks/useLogin"
 import Login from './Login';
+import { useLogin } from '../hooks/useLogin';
 
 const Home = () => {
     const { isLoggedIn } = useLogin();
-    return  isLoggedIn() ? <TodoList /> : <Login />
+    return isLoggedIn() ? <TodoList /> : <Login />
 }
 
 export default Home

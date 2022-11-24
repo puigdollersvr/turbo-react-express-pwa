@@ -10,10 +10,16 @@ import Typography from '@mui/material/Typography';
 import { Delete, Remove, Visibility } from '@mui/icons-material';
 import { useTodo } from '../hooks/useTodo';
 import { useNavigate } from 'react-router-dom';
+import EditDialog from './EditDialog';
+import { useEffect } from 'react';
+import { Fab } from '@mui/material';
+import AddIcon from '@mui/icons-material/Add';
 
 export default function TodoList() {
 
+  const [open, setOpen] = React.useState(false);
   const [checked, setChecked] = React.useState([0]);
+  const [ selectedTodo, setSelectedTodo] = React.useState({});
 
   const { todos } = useTodo();
   const navigate = useNavigate();
@@ -32,8 +38,12 @@ export default function TodoList() {
   };
 
   const handleSecondaryAction = (id:string) => {
-    navigate(id)
+   //navigate(id)
+    setSelectedTodo(todos.find((todo:any) => todo.id === id));
+    setOpen(true);
   }
+
+
 
   return (
     <>
@@ -54,11 +64,11 @@ export default function TodoList() {
                 <ListItemButton role={undefined} onClick={handleToggle(key)} dense>
                 <ListItemIcon>
                     <Checkbox
-                    edge="start"
-                    checked={checked.indexOf(key) !== -1}
-                    tabIndex={-1}
-                    disableRipple
-                    inputProps={{ 'aria-labelledby': labelId }}
+                      edge="start"
+                      checked={checked.indexOf(key) !== -1}
+                      tabIndex={-1}
+                      disableRipple
+                      inputProps={{ 'aria-labelledby': labelId }}
                     />
                 </ListItemIcon>
                 <ListItemText id={labelId} primary={`${value.title}`} />
@@ -67,6 +77,20 @@ export default function TodoList() {
             );
         })}
         </List>
+        <Fab 
+            color="primary" 
+            aria-label="add" 
+            sx={{'position': 'absolute', 'bottom': 50, 'right': 50}} 
+            onClick={ () => setOpen(true)}
+        >
+            <AddIcon />
+        </Fab>
+        <EditDialog 
+          todo={selectedTodo}
+          open={open}
+          setOpen={setOpen}
+          setSelectedTodo={setSelectedTodo}  
+        />
     </>
   );
 }

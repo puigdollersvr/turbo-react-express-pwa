@@ -19,40 +19,30 @@ const LoginForm = ({children}: any) => {
   }
 
   return (
-    <Stack spacing={2} direction="column" justifyContent={"center"} sx={{height:'100%'}}>
-      <Card sx={{ minWidth: 275}}>
-          <CardContent>
-            <Stack spacing={4} direction="column">
-              <Typography variant="h2" component="div">
-              Login
-              </Typography>
-              <Stack spacing={2} direction="column" alignItems={"center"} justifyContent={"center"}>
-                <TextField
-                  required
-                  id="filled-required"
-                  label="email"
-                  variant="standard"
-                  onChange={(e) => setEmail(`${e.target.value}`)}
-                />
-                <TextField
-                  required
-                  id="standard-password-input"
-                  label="Password"
-                  type="password"
-                  autoComplete="current-password"
-                  variant="standard"
-                  onChange={(e) => setPassword(`${e.target.value}`)}
-                />
-              </Stack>  
-              <Stack spacing={2} direction="row" justifyContent={"center"}>
-                <Button variant="contained" onClick={handleLogin}>Login</Button>
-                <Button variant="text">Register</Button>
-              </Stack>  
-            </Stack>
-          </CardContent>
-        </Card>
+    <Stack 
+      spacing={2} 
+      direction="column" 
+      //alignItems={"center"} 
+      //justifyContent={"center"}
+    >
+      <TextField
+        required
+        id="filled-required"
+        label="email"
+        variant="standard"
+        onChange={(e) => setEmail(`${e.target.value}`)}
+      />
+      <TextField
+        required
+        id="standard-password-input"
+        label="Password"
+        type="password"
+        autoComplete="current-password"
+        variant="standard"
+        onChange={(e) => setPassword(`${e.target.value}`)}
+      />
+        <Button variant="contained" onClick={handleLogin}>Login</Button>
     </Stack>
-    
   );
 }
 

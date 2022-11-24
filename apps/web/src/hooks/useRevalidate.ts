@@ -8,9 +8,10 @@ export const useRevalidate = (id?: string) => {
     const [errors, setErrors] = useState({});
 
     const url = `${process.env.REACT_APP_API_URL}/auth/revalidate`;
+    const tokenExists = !!localStorage.getItem("token");
 
     useEffect(() => {
-        fetch(url, {
+        tokenExists ? fetch(url, {
             headers:{
                 Authorization: `Bearer ${localStorage.getItem("token") || ''}`
             }
@@ -31,7 +32,8 @@ export const useRevalidate = (id?: string) => {
                     setErrors(response);
                 }
                 setIsLoading(false);
-            });
+            }) : setIsValidated(false);
+            setIsLoading(false);
     }, [])
 
     return {
